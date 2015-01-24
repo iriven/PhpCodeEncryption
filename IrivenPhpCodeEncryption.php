@@ -1,10 +1,34 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: IRIVENTEAM
- * Date: 24/01/2015
- * Time: 08:58
- */
+* IrivenPhpCodeEncryption - PHP class to obfuscate your code source.
+* Copyright (C) 2015 Iriven France Software, Inc. 
+*
+* Licensed under The GPL V3 License
+* Redistributions of files must retain the above copyright notice.
+*
+* @Copyright 		Copyright (C) 2015 Iriven France Software, Inc.
+* @package 		IrivenPhpCodeEncryption
+* @Since 		Version 1.0.0
+* @link 		https://github.com/iriven/IrivenPhpCodeEncryption The IrivenPhpCodeEncryption GitHub project
+* @author 		Alfred Tchondjo (original founder) <iriven@yahoo.fr>
+* @license  		GPL V3 License(http://www.gnu.org/copyleft/gpl.html)
+*
+* ==================  NOTICE  =======================
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public License
+* as published by the Free Software Foundation; either version 3
+* of the License, or any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+* or contact the author by mail at: <iriven@yahoo.fr>.
+**/
 
 class IrivenPhpCodeEncryption {
 

@@ -11,6 +11,7 @@ EXAMPLE
 ========
 require '/../IrivenPhpCodeEncryption.php';
 $encryption = new IrivenPhpCodeEncryption();
+
 /**
 * from file to file
 *
