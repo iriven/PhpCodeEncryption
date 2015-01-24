@@ -19,6 +19,7 @@ class IrivenPhpCodeEncryption {
     private $tokens=null;
     private $class=false;
     private $function=false;
+	private $sourceFile = null;
     private $depth=0;		// Keep track of how deep in curly brackets we are, so we can unset $class and $function when needed.
     private $installedAlgorithms = array();
     private $reserved=array('$_GET','$_POST','$_REQUIRE','$_SERVER','$_ENV','$_SESSION','$_FILES');
@@ -43,6 +44,7 @@ class IrivenPhpCodeEncryption {
             default:
                 if(!is_readable($source)) return false;
                 $this->phpCode = file_get_contents($source);
+				$this->sourceFile = array('dirname'=>pathinfo($source,PATHINFO_DIRNAME),'filename'=>pathinfo($source,PATHINFO_FILENAME));
                 break;
         endswitch;
         return $this->tokenize();
@@ -58,22 +60,26 @@ class IrivenPhpCodeEncryption {
     }
 
     /**
-     * @param $file
+     * @param $destination
      * @return bool
      */
-    public function save($file=null) {
+    public function save($destination=null) {
         if (!$this->phpCode) return false;
-        if(!$file)
+        if(!$destination)
         {
-            $file = 'EncryptedPhpCode';
-            $date = new DateTime('now',new DateTimeZone('Europe/Paris'));
-            $file .= $date->format('YmdHis');
-            $file .= '.php';
+            $destination = ($this->sourceFile)? implode(DIRECTORY_SEPARATOR,$this->sourceFile) : 'IrivenPhpCode';
+            if($destination === 'IrivenPhpCode')
+            {
+                $date = new DateTime('now',new DateTimeZone('Europe/Paris'));
+                $destination .= $date->format('YmdHis');
+            }
+            $destination .= '_Encrypted.php';
         }
-        if(file_put_contents($file,$this->phpCode,LOCK_EX)) return true;
+        if(($destination === basename($destination)) and isset($this->sourceFile['dirname']))
+            $destination= rtrim($this->sourceFile['dirname'],DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$destination;
+        if(file_put_contents($destination,$this->phpCode,LOCK_EX)) return true;
         return false;
     }
-
     /**
      * @return string
      */
