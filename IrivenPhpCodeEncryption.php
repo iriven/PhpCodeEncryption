@@ -10,7 +10,7 @@
 * @package 		IrivenPhpCodeEncryption
 * @Since 		Version 1.0.0
 * @link 		https://github.com/iriven/IrivenPhpCodeEncryption The IrivenPhpCodeEncryption GitHub project
-* @author 		Alfred Tchondjo (original founder) <iriven@yahoo.fr>
+* @author 		Alfred Tchondjo (original founder) <contact@iriven.com>
 * @license  		GPL V3 License(http://www.gnu.org/copyleft/gpl.html)
 *
 * ==================  NOTICE  =======================
@@ -27,7 +27,7 @@
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-* or contact the author by mail at: <developper@iriven.com>.
+* or contact the author by mail at: <contact@iriven.com>.
 **/
 
 class IrivenPhpCodeEncryption {
