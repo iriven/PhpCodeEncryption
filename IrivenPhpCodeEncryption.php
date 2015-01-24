@@ -178,7 +178,7 @@ class IrivenPhpCodeEncryption {
     /**
      * @return $this|bool
      */
-    public function pack() {
+    public function compileDatas() {
         if (!$this->tokens) return false;
         foreach ($this->tokens as $sKey=>&$tokenValue)
         {
