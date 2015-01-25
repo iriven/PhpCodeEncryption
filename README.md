@@ -13,10 +13,6 @@ require '/../IrivenPhpCodeEncryption.php';
 
 $encryption = new IrivenPhpCodeEncryption();
 
-<<<<<<< HEAD
-/**
-=======
->>>>>>> origin/master
 * from file to file
 
 $encryption->loadCode('source.php');
