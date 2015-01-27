@@ -44,7 +44,7 @@ class IrivenPhpCodeEncryption {
     private $tokens=null;
     private $class=false;
     private $function=false;
-	private $sourceFile = null;
+    private $sourceFile = null;
     private $depth=0;		// Keep track of how deep in curly brackets we are, so we can unset $class and $function when needed.
     private $installedAlgorithms = array();
     private $reserved=array('$_GET','$_POST','$_REQUIRE','$_SERVER','$_ENV','$_SESSION','$_FILES');
