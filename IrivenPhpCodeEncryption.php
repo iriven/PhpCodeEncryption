@@ -1,34 +1,35 @@
 <?php
 /**
-* IrivenPhpCodeEncryption - PHP class to obfuscate your code source.
-* Copyright (C) 2015 Iriven France Software, Inc. 
-*
-* Licensed under The GPL V3 License
-* Redistributions of files must retain the above copyright notice.
-*
-* @Copyright 		Copyright (C) 2015 Iriven France Software, Inc.
-* @package 		IrivenPhpCodeEncryption
-* @Since 		Version 1.0.0
-* @link 		https://github.com/iriven/IrivenPhpCodeEncryption The IrivenPhpCodeEncryption GitHub project
-* @author 		Alfred Tchondjo (original founder) <contact@iriven.com>
-* @license  		GPL V3 License(http://www.gnu.org/copyleft/gpl.html)
-*
-* ==================  NOTICE  =======================
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; either version 3
-* of the License, or any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-* or contact the author by mail at: <contact@iriven.com>.
-**/
+ * IrivenPhpCodeEncryption - PHP class to obfuscate your code source.
+ * Copyright (C) 2015 Iriven France Software, Inc.
+ *
+ * Licensed under The GPL V3 License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright 		Copyright (C) 2015 Iriven France Software, Inc.
+ * @package 		IrivenPhpCodeEncryption
+ * @since 		Version 1.0.0
+ * @link            	https://github.com/iriven/IrivenPhpCodeEncryption The IrivenPhpCodeEncryption GitHub project
+ * @author          	Alfred Tchondjo (original founder) <iriven@yahoo.fr>
+ * @license  		GPL V3 License(http://www.gnu.org/copyleft/gpl.html)
+ *
+ * ==================  NOTICE  =======================
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * or contact the author by mail at: <contact@iriven.com>.
+ **/
+
 
 class IrivenPhpCodeEncryption {
 
@@ -58,22 +59,28 @@ class IrivenPhpCodeEncryption {
      * @param bool $isFile
      * @return $this|bool|IrivenPhpCodeEncryption
      */
-    public function loadCode($source,$isFile = true)
+    public function loadCode($source)
     {
         if(!$source) return false;
-        switch($isFile):
-            case false:
+        switch($source):
+            case (filter_var($source, FILTER_VALIDATE_URL) !== FALSE):
+            case (file_exists($source)):
+            case (is_link($source)):
+            try
+            {
+                if(!$this->phpCode = file_get_contents($source))
+                    throw new Exception('Impossible de lire le fichier source !', 1);
+                $this->sourceFile = array('dirname'=>pathinfo($source,PATHINFO_DIRNAME),'filename'=>pathinfo($source,PATHINFO_FILENAME));
+            }
+            catch(Exception $e){$e->getMessage();}
+                break;
+            default:               
                 $this->phpCode = $source;
                 break;
-            default:
-                if(!is_readable($source)) return false;
-                $this->phpCode = file_get_contents($source);
-				$this->sourceFile = array('dirname'=>pathinfo($source,PATHINFO_DIRNAME),'filename'=>pathinfo($source,PATHINFO_FILENAME));
-                break;
+               
         endswitch;
         return $this->tokenize();
     }
-
     /**
      * @return bool|null
      */
