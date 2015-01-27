@@ -10,11 +10,12 @@ Classe de cryptographie entièrement developpée en PHP destinée  tant  aux dev
 EXAMPLE
 ========
 require '/../IrivenPhpCodeEncryption.php';
+
 $encryption = new IrivenPhpCodeEncryption();
-/**
+
+
 * from file to file
-*
-*/
+====================
 
 ==> SPECIFIC FILE NAME
 
@@ -40,10 +41,9 @@ $encryption->save();
 
 $encryption->loadCode('source.php')->compileDatas()->save();
 
-/**
+
 * from file to memory
-*
-*/
+======================
 
 $encryption->loadCode('source.php');
 
